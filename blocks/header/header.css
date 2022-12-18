@@ -1,0 +1,20 @@
+.header {
+    margin: 0 auto;
+    max-width: 880px;
+    /*
+    padding-left: 200px;
+    padding-right: 200px;*/
+    padding-top: 45px;
+    padding-bottom: 41px;
+    border-bottom: 1px solid rgba(84, 84, 84, .7);
+}
+
+@media screen and (max-width:1199px) {
+    .header {
+        /*
+        padding-left: calc(0px + (200 - 0) * ((100vw - 320px) / (1199 - 320)));
+        padding-right: calc(0px + (200 - 0) * ((100vw - 320px) / (1199 - 320)));*/
+        padding-top: calc(28px + (45 - 28) * ((100vw - 320px) / (1199 - 320)));
+        padding-bottom: calc(31.6px + (41 - 31.6) * ((100vw - 320px) / (1199 - 320)));
+    }
+}
