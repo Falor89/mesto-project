@@ -20,3 +20,12 @@
 @import url(../blocks/element/__button-like/element__button-like.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+@import url(../blocks/popap/popap.css);
+@import url(../blocks/popap/_opened/popup_opened.css);
+@import url(../blocks/popap/__container/popup__container.css);
+@import url(../blocks/popap/__button-close/popup__button-close.css);
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__title/form__title.css);
+@import url(../blocks/form/__input-container/form__input-container.css);
+@import url(../blocks/form/__field/form__field.css);
+@import url(../blocks/form/__button-submit/form__button-submit.css);

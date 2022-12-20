@@ -5,18 +5,12 @@
     max-width: 880px;
     padding-top: 40px;
     padding-bottom: 50px;
-    /*
-    padding-left: 200px;
-    padding-right: 200px;*/
 }
 
 @media screen and (max-width:1199px) {
     .profile {
         padding-top: calc(38.25px + (40 - 38.25) * ((100vw - 320px) / (1199 - 320)));
         padding-bottom: calc(36px + (50 - 36) * ((100vw - 320px) / (1199 - 320)));
-        /*
-        padding-left: calc(19px + (200 - 19) * ((100vw - 320px) / (1199 - 320)));
-        padding-right: calc(19px + (200 - 19) * ((100vw - 320px) / (1199 - 320)));*/
     }
 }
 

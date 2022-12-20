@@ -12,7 +12,7 @@
 <body class="root">
     <div class="page">
         <header class="header">
-            <img class="header__logo" src="./images/__logo/logo__mesto.svg">
+            <img class="header__logo" src="./images/__logo/logo__mesto.svg" alt="Логотип">
         </header>
         <main class="content">
             <section class="profile">
@@ -24,49 +24,49 @@
                     </div>
                     <p class="profile__subtitle">Исследователь океана</p>
                 </div>
-                <button class="profile__button-add profile__button-edit_active"></button>
+                <button class="profile__button-add"></button>
             </section>
             <section class="elements">
                 <div class="element">
                     <img src="./images/elements/Karachaevsk.jpg" alt="Karachaevsk" class="element__image">
                     <div class="element__group">
                         <h2 class="element__title">Карачаевск</h2>
-                        <button class="element__button-like profile__button-edit_active"></button>
+                        <button class="element__button-like element__button-like_active"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="./images/elements/Elbrus.jpg" alt="Elbrus" class="element__image">
                     <div class="element__group">
-                        <h2 class="element__title">Карачаевск</h2>
-                        <button class="element__button-like profile__button-edit_active"></button>
+                        <h2 class="element__title">Гора Эльбрус</h2>
+                        <button class="element__button-like element__button-like_active"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="./images/elements/Dombay.jpg" alt="Dombay" class="element__image">
                     <div class="element__group">
-                        <h2 class="element__title">Карачаевск</h2>
-                        <button class="element__button-like profile__button-edit_active"></button>
+                        <h2 class="element__title">Домбай</h2>
+                        <button class="element__button-like element__button-like_active"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="./images/elements/Lyn.jpg" alt="Lyn" class="element__image">
                     <div class="element__group">
                         <h2 class="element__title">Экраноплан Лунь</h2>
-                        <button class="element__button-like profile__button-edit_active"></button>
+                        <button class="element__button-like element__button-like_active"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="./images/elements/Sahalin.jpg" alt="Sahalin" class="element__image">
                     <div class="element__group">
                         <h2 class="element__title">Сахалин</h2>
-                        <button class="element__button-like profile__button-edit_active"></button>
+                        <button class="element__button-like element__button-like_active"></button>
                     </div>
                 </div>
                 <div class="element">
                     <img src="./images/elements/Spitsbergen.jpg" alt="Spitsbergen" class="element__image">
                     <div class="element__group">
                         <h2 class="element__title">Шпицберген</h2>
-                        <button class="element__button-like profile__button-edit_active"></button>
+                        <button class="element__button-like element__button-like_active"></button>
                     </div>
                 </div>
             </section>
@@ -77,6 +77,18 @@
             </p>
         </footer>
     </div>
+    <section class="popup">
+        <div class="popup__container">
+            <form class="form">
+                <h2 class="form__title">Редактировать профиль</h2>
+                <fieldset class="form__input-container">
+                    <input type="text" class="form__field" name="name" placeholder="Жак-Ив Кусто" required>
+                    <input type="text" class="form__field" name="about" placeholder="Исследователь океана" required>
+                </fieldset>
+                <button type="submit" class="form__button-submit">Сохранить</button>
+            </form>
+            <button type="button" class="popup__button-close"></button>
+        </div>
+    </section>
 </body>
-
 </html>
