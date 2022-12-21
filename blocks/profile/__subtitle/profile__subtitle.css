@@ -3,10 +3,15 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 336px;
 }
 
 @media screen and (max-width:1199px) {
     .profile__subtitle {
+        max-width: calc(286px + (336 - 286) * ((100vw - 320px) / (1199 - 320)));
         font-size: calc(14px + (18 - 14) * ((100vw - 320px) / (1199 - 320)));
         line-height: calc(17px + (22 - 17) * ((100vw - 320px) / (1199 - 320)));
     }

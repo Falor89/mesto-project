@@ -5,6 +5,7 @@
 
 @media screen and (max-width:800px) {
     .profile__name {
+        justify-content: center;
         gap: 10px
     }
 }
