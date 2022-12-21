@@ -17,7 +17,11 @@
         width: calc(282px + (150 - 282) * ((100vw - 320px) / (1199 - 320)));
     }
 }
-
+@media screen and (max-width:320px) {
+    .profile__button-add{
+        background-image: url(../../../images/profile/button_add-mini.png);
+    }
+}
 .profile__button-add:hover {
     opacity: .6;
 }

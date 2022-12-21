@@ -1,0 +1,23 @@
+.form__field{
+    width: 100%;
+    padding:30px 0 0 0;
+    border:none;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    outline: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+}
+.form__field:first-of-type{
+    padding-top: 0;
+}
+.form__field::placeholder{
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
