@@ -1,12 +1,13 @@
-.form__input-container{
+.form__input-container {
     padding: 0;
     margin-top: 54px;
     margin-bottom: 48px;
     border: none;
 }
+
 @media screen and (max-width:1199px) {
-    .form__input-container{
-        margin-top:calc(75px + (54 - 75) * ((100vw - 320px) / (1199 - 320)));
+    .form__input-container {
+        margin-top: calc(75px + (54 - 75) * ((100vw - 320px) / (1199 - 320)));
         margin-bottom: calc(45px + (48 - 45) * ((100vw - 320px) / (1199 - 320)));
     }
 }

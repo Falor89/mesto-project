@@ -30,9 +30,19 @@ initialCards.forEach((item) => {
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
   const likeButton = cardElement.querySelector('.element__button-like');
   const deleteButton = cardElement.querySelector('#element__button-delete');
+  const elementItem = cardElement.querySelector('.element__title');
+  const elementImage = cardElement.querySelector('.element__image');
+  const cardImage = document.querySelector('.popup__card-image');
 
-  cardElement.querySelector('.element__title').textContent = item.name;
-  cardElement.querySelector('.element__image').src = item.link;
+  elementItem.textContent = item.name;
+  elementImage.src = item.link;
+
+  elementImage.addEventListener('click', function () {
+    popupDescription.textContent = item.name;
+    cardImage.src = item.link;
+    cardImage.alt = item.name;
+    openPopup(popupBigImage);
+  })
 
   likeButton.addEventListener('click', cardLike);
   deleteButton.addEventListener('click', cardDelete);

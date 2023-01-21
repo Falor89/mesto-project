@@ -1,5 +1,5 @@
-.popup__container-image{
-  margin: 0 auto;
+.popup__container-image {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,14 +8,14 @@
   max-height: 100%;
 }
 
-.popup__card-image{
+.popup__card-image {
   max-width: 75vw;
   max-height: 75vh;
   box-sizing: border-box;
 }
 
-.popup__description{
-  color:#fff;
+.popup__description {
+  color: #fff;
   display: flex;
   justify-self: start;
   align-self: flex-start;
