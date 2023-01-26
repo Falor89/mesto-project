@@ -33,3 +33,5 @@
 @import url(../blocks/form/__button-submit/form__button-submit.css);
 @import url(../blocks/popup/__container-image/popup__container-image.css);
 @import url(../blocks/popup/__button-close-image/popup__button-close-image.css);
+@import url(../blocks/popup/__big-image/popup__big-image.css);
+@import url(../blocks/popup/__big-image/_opacity/popup__big-image_opacity.css);

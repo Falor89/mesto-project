@@ -39,12 +39,12 @@
             <div class="popup__container">
                 <form class="form form__edit-profile" name="form__edit-profile">
                     <h2 class="form__title">Редактировать профиль</h2>
-                    <fieldset class="form__input-container">
+                    <div class="form__input-container">
                         <input tabindex='1' type="text" class="form__field name-input" name="nameInput"
-                            placeholder="Имя" value="Жак-Ив Кусто" required>
+                            placeholder="Имя" required autocomplete="off">
                         <input tabindex='2' type="text" class="form__field about-input" name="aboutInput"
-                            placeholder="О себе" value="Исследователь океана" required>
-                    </fieldset>
+                            placeholder="О себе" value="" required autocomplete="off">
+                    </div>
                     <button type="submit" class="form__button-submit">Сохранить</button>
                 </form>
                 <button type="button" class="popup__button-close"></button>
@@ -54,18 +54,18 @@
             <div class="popup__container">
                 <form class="form form__add-place" name="form form__add-place">
                     <h2 class="form__title">Новое Место</h2>
-                    <fieldset class="form__input-container">
+                    <div class="form__input-container">
                         <input type="text" class="form__field place-input" name="placeInput" placeholder="Название"
-                            required>
+                            required autocomplete="off">
                         <input type="url" class="form__field link-input" name="linkInput"
-                            placeholder="Ссылка на картинку" required>
-                    </fieldset>
+                            placeholder="Ссылка на картинку" required autocomplete="off">
+                    </div>
                     <button type="submit" class="form__button-submit">Создать</button>
                 </form>
                 <button type="button" class="popup__button-close"></button>
             </div>
         </section>
-        <section class="popup popup__big-image">
+        <section class="popup popup__big-image popup__big-image_opacity">
             <div class="popup__container-image">
                 <img src="#" alt="Большая картинка" class="popup__card-image">
                 <h2 class="popup__description"></h2>
@@ -83,8 +83,8 @@
             </article>
         </template>
     </div>
-    <script src="./js/script.js"></script>
     <script src="./js/cards.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
