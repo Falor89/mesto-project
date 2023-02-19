@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Место</title>
+</head>
+
+<body class="root">
+    <div class="page">
+        <header class="header">
+            <img class="header__logo" src="<%=require('./images/__logo/logo__mesto.svg')%>" alt="Логотип">
+        </header>
+        <main class="content">
+            <section class="profile">
+                <img src="<%=require('./images/profile/profile__image.jpg')%>" alt="Жак-Ив Кусто"
+                    class="profile__image">
+                <div class="profile__info">
+                    <div class="profile__name">
+                        <h1 class="profile__title">Жак-Ив Кусто</h1>
+                        <button class="profile__button-edit" type="button"></button>
+                    </div>
+                    <p class="profile__subtitle">Исследователь океана</p>
+                </div>
+                <button class="profile__button-add" type="button"></button>
+            </section>
+            <section class="elements">
+            </section>
+        </main>
+        <footer class="footer">
+            <p class="footer__copyright">
+                &copy;&nbsp;2022. Бобырь Максим
+            </p>
+        </footer>
+        <section class="popup popup__profile">
+            <div class="popup__container">
+                <form class="form form__edit-profile" name="form__edit-profile">
+                    <h2 class="form__title">Редактировать профиль</h2>
+                    <div class="form__input-container">
+                        <input tabindex='1' type="text" class="form__field name-input" id="name-input" name="nameInput"
+                            placeholder="Имя" required autocomplete="off" minlength="2" maxlength="40"
+                            pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$">
+                        <span class="form__field-error name-input-error"></span>
+                        <input tabindex='2' type="text" class="form__field about-input" id="about-input"
+                            name="aboutInput" placeholder="О себе" value="" required autocomplete="off" minlength="2"
+                            maxlength="200" pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$">
+                        <span class="form__field-error about-input-error"></span>
+                    </div>
+                    <button type="submit" class="form__button-submit">Сохранить</button>
+                </form>
+                <button type="button" class="popup__button-close"></button>
+            </div>
+        </section>
+        <section class="popup popup__add-card">
+            <div class="popup__container">
+                <form class="form form__add-place" name="form form__add-place">
+                    <h2 class="form__title">Новое Место</h2>
+                    <div class="form__input-container">
+                        <input type="text" class="form__field place-input" id="place-input" name="placeInput"
+                            placeholder="Название" required autocomplete="off" minlength="2" maxlength="30"
+                            pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$">
+                        <span class="form__field-error place-input-error"></span>
+                        <input type="url" class="form__field link-input" id="link-input" name="linkInput"
+                            placeholder="Ссылка на картинку" required autocomplete="off">
+                        <span class="form__field-error link-input-error"></span>
+                    </div>
+                    <button type="submit" class="form__button-submit">Создать</button>
+                </form>
+                <button type="button" class="popup__button-close"></button>
+            </div>
+        </section>
+        <section class="popup popup__big-image popup__big-image_opacity">
+            <div class="popup__container-image">
+                <img src="#" alt="Большая картинка" class="popup__card-image">
+                <h2 class="popup__description"></h2>
+                <button type="button" class="popup__button-close"></button>
+            </div>
+        </section>
+        <template id="element-template">
+            <article class="element">
+                <button type="button" class="element__button-delete" id="element__button-delete"></button>
+                <img src="#" alt="Фотография" class="element__image">
+                <div class="element__group">
+                    <h2 class="element__title"></h2>
+                    <button class="element__button-like" type="button"></button>
+                </div>
+            </article>
+        </template>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+.form {
+    margin: 0 auto;
+    max-width: 358px;
+    width: 100%;
+}
+
+@media screen and (max-width:1199px) {
+    .form {
+        max-width: calc(238px + (358 - 238) * ((100vw - 320px) / (1199 - 320)));
+
+        /*
+        padding-top: calc(25px + (34 - 25) * ((100vw - 320px) / (1199 - 320)));
+        padding-bottom: calc(25px + (37 - 25) * ((100vw - 320px) / (1199 - 320)));
+        */
+    }
+}
