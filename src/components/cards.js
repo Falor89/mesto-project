@@ -1,7 +1,7 @@
-export { initialCards, cardLike, cardDelete, formCreateCards, renderCard }
+export { initialCards, toggleLike, deleteCard, formCreateCards, renderCard }
 import { openPopup, closePopup, popupPlace, popupImage } from './modal.js'
 
-const formCreateCards = document.querySelector('.form__add-place');
+const formCreateCards = document.querySelector('.form__place');
 const cardsContainer = document.querySelector('.elements');
 const popupDescription = document.querySelector('.popup__description');
 const cardTemplate = document.querySelector('#element-template').content;
@@ -11,12 +11,12 @@ const linkInput = document.querySelector('.link-input');
 
 
 //Лайки для карточек
-function cardLike(evt) {
+function toggleLike(evt) {
   evt.target.classList.toggle('element__button-like_active')
 };
 
 // Удаление карточки
-function cardDelete(evt) {
+function deleteCard(evt) {
   evt.target.closest('.element').remove();
 };
 
@@ -32,8 +32,8 @@ function createCard(itemName, itemLink) {
   elementImage.src = itemLink;
   elementImage.alt = itemName;
 
-  elementLikeButton.addEventListener('click', cardLike);
-  elementDeleteButton.addEventListener('click', cardDelete);
+  elementLikeButton.addEventListener('click', toggleLike);
+  elementDeleteButton.addEventListener('click', deleteCard);
 
   elementImage.addEventListener('click', function () {
     popupDescription.textContent = itemName;
