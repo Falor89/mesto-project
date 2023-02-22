@@ -1,59 +1,64 @@
 export { enableValidation }
 
-function showInputError(formElement, inputElement, errorMessage) {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+function showInputError(inputElement, settings, errorMessage) {
+    const errorElement = document.querySelector(`.${inputElement.id}-error`);
 
-    inputElement.classList.add('form__field-error_border');
+    inputElement.classList.add(settings.inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('form__field-error_active');
+    errorElement.classList.add(settings.errorClass);
 }
 
-function hideInputError(formElement, inputElement) {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+function hideInputError(inputElement, settings) {
+    const errorElement = document.querySelector(`.${inputElement.id}-error`);
 
-    inputElement.classList.remove('form__field-error_border')
+    inputElement.classList.remove(settings.inputErrorClass)
     errorElement.textContent = '';
-    errorElement.classList.remove('form__field-error_active')
+    errorElement.classList.remove(settings.errorClass)
 }
 
-function checkInputValidity(formElement, inputElement) {
+function checkInputValidity(inputElement, settings) {
     if (inputElement.validity.patternMismatch) {
-        inputElement.setCustomValidity("Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы")
+        inputElement.setCustomValidity(inputElement.dataset.errorMessage)
     }
     else {
         inputElement.setCustomValidity('')
     }
     if (!inputElement.validity.valid) {
-        showInputError(formElement, inputElement, inputElement.validationMessage);
+        showInputError(inputElement, settings, inputElement.validationMessage);
     }
     else {
-        hideInputError(formElement, inputElement)
+        hideInputError(inputElement, settings)
     }
 }
 
-function setEventListeners(formElement) {
-    const inputList = Array.from(formElement.querySelectorAll('.form__field'));
-    const buttonElement = formElement.querySelector('.form__button-submit');
-    toggleButtonState(inputList, buttonElement);
+function setEventListeners(formElement, settings) {
+    const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
+    const buttonElement = formElement.querySelector(settings.submitButtonSelector);
+
+    formElement.addEventListener('reset', () => {
+        setTimeout(() => {
+            toggleButtonState(inputList, buttonElement, settings);
+        }, 0)
+    })
+
+    toggleButtonState(inputList, buttonElement, settings);
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
-            toggleButtonState(inputList, buttonElement);
-            checkInputValidity(formElement, inputElement);
+            toggleButtonState(inputList, buttonElement, settings);
+            checkInputValidity(inputElement, settings);
         })
     })
 }
 
-function enableValidation() {
-    const formList = Array.from(document.querySelectorAll('.form'));
+function enableValidation(settings) {
+    const formList = Array.from(document.querySelectorAll(settings.formSelector));
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
         });
-        setEventListeners(formElement)
+        setEventListeners(formElement, settings)
     })
 }
-
-enableValidation();
 
 function hasInvalidInput(inputList) {
     return inputList.some((inputElement) => {
@@ -61,13 +66,13 @@ function hasInvalidInput(inputList) {
     })
 }
 
-function toggleButtonState(inputList, buttonElement) {
+function toggleButtonState(inputList, buttonElement, settings) {
     if (hasInvalidInput(inputList)) {
         buttonElement.disabled = true;
-        buttonElement.classList.add('form__button-submit_inactive')
+        buttonElement.classList.add(settings.inactiveButtonClass);
     }
     else {
         buttonElement.disabled = false;
-        buttonElement.classList.remove('form__button-submit_inactive')
+        buttonElement.classList.remove(settings.inactiveButtonClass);
     }
 }

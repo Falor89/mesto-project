@@ -1,5 +1,5 @@
 
-export { openPopup, closePopup, popupProfile, popupPlace, popupImage, formProfile, popupProfileEdit, handleProfileFormSubmit }
+export { openPopup, closePopup, popupProfile, popupPlace, popupImage, formProfile, openPopupProfile, handleProfileFormSubmit }
 import { enableValidation } from "./validate";
 
 const popupProfile = document.querySelector('.popup__profile');
@@ -39,7 +39,7 @@ function handleEscape(evt) {
 }
 //Попап профиль
 // Функция для попапа редактирования
-function popupProfileEdit() {
+function openPopupProfile() {
     nameInput.value = nameField.textContent;
     aboutInput.value = aboutField.textContent;
     openPopup(popupProfile);

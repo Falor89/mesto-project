@@ -41,11 +41,13 @@
                     <div class="form__input-container">
                         <input tabindex='1' type="text" class="form__field name-input" id="name-input" name="nameInput"
                             placeholder="Имя" required autocomplete="off" minlength="2" maxlength="40"
-                            pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$">
+                            pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$"
+                            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
                         <span class="form__field-error name-input-error"></span>
                         <input tabindex='2' type="text" class="form__field about-input" id="about-input"
                             name="aboutInput" placeholder="О себе" value="" required autocomplete="off" minlength="2"
-                            maxlength="200" pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$">
+                            maxlength="200" pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$"
+                            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
                         <span class="form__field-error about-input-error"></span>
                     </div>
                     <button type="submit" class="form__button-submit">Сохранить</button>
@@ -60,7 +62,8 @@
                     <div class="form__input-container">
                         <input type="text" class="form__field place-input" id="place-input" name="placeInput"
                             placeholder="Название" required autocomplete="off" minlength="2" maxlength="30"
-                            pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$">
+                            pattern="^[а-яА-ЯёЁa-zA-Z\s\-]+$"
+                            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы">
                         <span class="form__field-error place-input-error"></span>
                         <input type="url" class="form__field link-input" id="link-input" name="linkInput"
                             placeholder="Ссылка на картинку" required autocomplete="off">

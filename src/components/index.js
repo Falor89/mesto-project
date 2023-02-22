@@ -1,6 +1,6 @@
 import '../pages/index.css';
 import { formCreateCards, renderCard } from './cards.js';
-import { openPopup, closePopup, popupPlace, popupProfileEdit, formProfile, handleProfileFormSubmit } from './modal.js'
+import { openPopup, closePopup, popupPlace, openPopupProfile, formProfile, handleProfileFormSubmit } from './modal.js'
 import { enableValidation } from "./validate";
 
 const popups = document.querySelectorAll('.popup');
@@ -27,7 +27,7 @@ popups.forEach((popup) => {
 })
 
 //Кнопка открытия попапа редактирования
-popupProfileButton.addEventListener('click', popupProfileEdit);
+popupProfileButton.addEventListener('click', openPopupProfile);
 
 // Слушатель изменения попапа
 formProfile.addEventListener('submit', handleProfileFormSubmit);
@@ -35,14 +35,17 @@ formProfile.addEventListener('submit', handleProfileFormSubmit);
 // Слушатель загрузки карточки
 formCreateCards.addEventListener('submit', renderCard);
 
-enableValidation({
+
+const validationSettings = {
   formSelector: '.form',
   inputSelector: '.form__field',
   submitButtonSelector: '.form__button-submit',
-  inactiveButtonClass: 'form__button-sumbite_inactive',
+  inactiveButtonClass: 'form__button-submit_inactive',
   inputErrorClass: 'form__field-error_border',
   errorClass: 'form__field-error_active'
-});
+};
+
+enableValidation(validationSettings);
 
 // Кнопка закрытия всех попапов
 /*
