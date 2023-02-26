@@ -1,5 +1,5 @@
 
-export { openPopup, closePopup, popupProfile, popupPlace, popupImage, formProfile, openPopupProfile, handleProfileFormSubmit }
+export { openPopup, closePopup, popupProfile, popupPlace, popupImage, formProfile, nameField, aboutField, openPopupProfile, handleProfileFormSubmit }
 import { enableValidation } from "./validate";
 
 const popupProfile = document.querySelector('.popup__profile');
@@ -46,6 +46,7 @@ function openPopupProfile() {
 }
 
 //Сохранение изменения попапа
+
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     nameField.textContent = nameInput.value;
@@ -53,6 +54,12 @@ function handleProfileFormSubmit(evt) {
     closePopup(popupProfile);
     //Функция для редактирования профиля + закрытие попапа
 }
+
+
+
+
+
+
 /*
 // Функция закрытия кликом вне попапа
 function handleOverlay(evt) {

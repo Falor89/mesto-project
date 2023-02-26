@@ -1,8 +1,8 @@
 import '../pages/index.css';
-import { formCreateCards, renderCard } from './cards.js';
 import { openPopup, closePopup, popupPlace, openPopupProfile, formProfile, handleProfileFormSubmit } from './modal.js'
 import { enableValidation } from "./validate";
-
+import { config, getInitialCards } from './api.js';
+import { toggleLike, deleteCard, createCard, renderCards, cardsContainer, formCreateCards, handleCardSubmit } from './cards.js';
 const popups = document.querySelectorAll('.popup');
 
 const popupProfileButton = document.querySelector('.profile__button-edit');
@@ -33,8 +33,13 @@ popupProfileButton.addEventListener('click', openPopupProfile);
 formProfile.addEventListener('submit', handleProfileFormSubmit);
 
 // Слушатель загрузки карточки
-formCreateCards.addEventListener('submit', renderCard);
+// formCreateCards.addEventListener('submit', renderCards);
+console.log(getInitialCards())
+getInitialCards().resolve
 
+
+
+formCreateCards.addEventListener('submit', handleCardSubmit)
 
 const validationSettings = {
   formSelector: '.form',
