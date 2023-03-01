@@ -1,17 +1,29 @@
 import '../pages/index.css';
-import { openPopup, closePopup, popupPlace, openPopupProfile, formProfile, handleProfileFormSubmit } from './modal.js'
+import { openPopup, closePopup, popupPlace, openPopupProfile, formProfile, formAvatar, handleProfileFormSubmit, handleProfileAvatarSubmit, popupAvatar, openAvatar } from './modal.js'
 import { enableValidation } from "./validate";
-import { config, getInitialCards } from './api.js';
-import { toggleLike, deleteCard, createCard, renderCards, cardsContainer, formCreateCards, handleCardSubmit } from './cards.js';
-const popups = document.querySelectorAll('.popup');
+import { getInitialCards, getProfileInfo } from './api.js';
+import { renderCards, formCreateCards, handleCardSubmit } from './cards.js';
+import { renderProfileInfo, profileUserAvatarButton } from './profile.js'
 
+
+const popups = document.querySelectorAll('.popup');
 const popupProfileButton = document.querySelector('.profile__button-edit');
 const popupAddButton = document.querySelector('.profile__button-add');
 
 //Кнопка открытия попапа добавления карточки.
-popupAddButton.addEventListener('click', () => {
-  openPopup(popupPlace);
-});
+popupProfileButton.addEventListener('click', openPopupProfile);
+
+popupAddButton.addEventListener('click', () => { openPopup(popupPlace) });
+
+profileUserAvatarButton.addEventListener('click', () => { openPopup(popupAvatar) });
+
+profileUserAvatarButton.addEventListener('dblclick', openAvatar)
+
+formCreateCards.addEventListener('submit', handleCardSubmit)
+
+formProfile.addEventListener('submit', handleProfileFormSubmit);
+
+formAvatar.addEventListener('submit', handleProfileAvatarSubmit);
 
 // Объединенный обработчик оверлея и крестиков
 
@@ -26,20 +38,25 @@ popups.forEach((popup) => {
   })
 })
 
-//Кнопка открытия попапа редактирования
-popupProfileButton.addEventListener('click', openPopupProfile);
 
-// Слушатель изменения попапа
-formProfile.addEventListener('submit', handleProfileFormSubmit);
+getProfileInfo()
+.then((res) => {
+  renderProfileInfo(res)
+})
+.catch((err) => {
+  console.log(`Ошибка в загрузке профиля: ${err}`)
+})
 
-// Слушатель загрузки карточки
-// formCreateCards.addEventListener('submit', renderCards);
-console.log(getInitialCards())
-getInitialCards().resolve
+getInitialCards()
+.then((res) => {
+  res.forEach((card) => {
+      renderCards(card)
+  })
+})
+.catch((err) => {
+  console.log(`Ошибка в загрузке карточек: ${err}`)
+})
 
-
-
-formCreateCards.addEventListener('submit', handleCardSubmit)
 
 const validationSettings = {
   formSelector: '.form',
@@ -52,18 +69,3 @@ const validationSettings = {
 
 enableValidation(validationSettings);
 
-// Кнопка закрытия всех попапов
-/*
-popupCloseButtonList.forEach(function (button) {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', function () {
-    closePopup(popup);
-  })
-});
-
-// Закрытие попапов кликом вне попапа
-
-popupProfile.addEventListener('click', handleOverlay);
-popupPlace.addEventListener('click', handleOverlay);
-popupImage.addEventListener('click', handleOverlay);
-*/

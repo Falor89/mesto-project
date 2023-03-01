@@ -1,11 +1,20 @@
 
-export { openPopup, closePopup, popupProfile, popupPlace, popupImage, formProfile, nameField, aboutField, openPopupProfile, handleProfileFormSubmit }
-import { enableValidation } from "./validate";
+export { openPopup, closePopup, popupProfile, popupPlace, popupImage, popupAvatar, popupDeleteConfirm, formProfile, formAvatar, nameField, aboutField, openPopupProfile, handleProfileFormSubmit, handleProfileAvatarSubmit, popupButtonSubmit, openAvatar }
+import {  updateProfileAvatar, updateProfileInfo } from './api.js';
+import { renderLoading } from './utils.js';
+import { profileUserName, profileUserAvatar, renderProfileInfo } from './profile.js'
+import { popupDescription, cardImage } from './cards.js'
 
 const popupProfile = document.querySelector('.popup__profile');
 const popupPlace = document.querySelector('.popup__add-card');
-const popupImage = document.querySelector('.popup__big-image')
+const popupImage = document.querySelector('.popup__big-image');
 
+const popupAvatar = document.querySelector('.popup__avatar');
+const formAvatar = document.querySelector('.form__avatar');
+const avatarInput = formAvatar.querySelector('.avatar-input')
+
+const popupDeleteConfirm = document.querySelector('.popup__delete-confirm')
+const popupButtonSubmit = popupDeleteConfirm.querySelector('.form__button-submit')
 
 const formProfile = document.querySelector('.form__profile');
 const nameInput = formProfile.querySelector('.name-input');
@@ -45,26 +54,48 @@ function openPopupProfile() {
     openPopup(popupProfile);
 }
 
+
+function openAvatar() {
+  popupDescription.textContent = profileUserName.textContent
+  cardImage.src = profileUserAvatar.src;
+  cardImage.alt = profileUserName.textContent;
+    openPopup(popupImage);
+    closePopup(popupAvatar)
+}
+
+
 //Сохранение изменения попапа
 
 function handleProfileFormSubmit(evt) {
-    evt.preventDefault();
-    nameField.textContent = nameInput.value;
-    aboutField.textContent = aboutInput.value;
-    closePopup(popupProfile);
-    //Функция для редактирования профиля + закрытие попапа
+  evt.preventDefault();
+  renderLoading(true, popupProfile, 'Сохранение...')
+  updateProfileInfo(nameInput, aboutInput)
+    .then((res) => {
+      renderProfileInfo(res)
+})
+    .catch((err) => {
+      console.log(`Ошибка в обновлении профиля: ${err}`)
+})
+    .finally(() => {
+      renderLoading(false, popupProfile)
+})
+closePopup(popupProfile)
 }
 
 
-
-
-
-
-/*
-// Функция закрытия кликом вне попапа
-function handleOverlay(evt) {
-    if (evt.target.classList.contains('popup_opened')) {
-        hideOpenedPopup()
-    }
+function handleProfileAvatarSubmit(evt) {
+  evt.preventDefault();
+  renderLoading(true, popupAvatar, 'Сохранение')
+  updateProfileAvatar(avatarInput)
+    .then((res) => {
+      renderProfileInfo(res)
+    })
+    .catch((err) => {
+      console.log(`Ошибка в изменении аватара: ${err}`)
+    })
+    .finally(() => {
+      renderLoading(false, popupAvatar)
+    })
+  closePopup(popupAvatar)
+  evt.target.reset();
 }
-*/

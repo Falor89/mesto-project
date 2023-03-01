@@ -1,7 +1,5 @@
-import { closePopup, popupPlace } from "./modal.js";
-import { createCard, renderCards } from './cards.js';
 
-export { config, getInitialCards, getProfileInfo, updateProfileInfo, downloadNewCard, deleteCard }
+export { config, getInitialCards, getProfileInfo, updateProfileInfo, downloadNewCard, deleteCard, putLikeCard, removeLikeCard, updateProfileAvatar }
 const config = {
     baseUrl: 'https://mesto.nomoreparties.co/v1/plus-cohort-21',
     headers: {
@@ -9,13 +7,6 @@ const config = {
         'Content-type': 'application/json'
     }
 }
-
-fetch(`${config.baseUrl}/users/me`, {
-    headers: config.headers
-})
-    .then((res) => {
-        return res.json()
-    })
 
 function handleResponse(res) {
     if (res.ok) {
@@ -30,14 +21,6 @@ function getInitialCards() {
         headers: config.headers
     })
         .then(handleResponse)
-        .then((res) => {
-            res.forEach((card) => {
-                renderCards(card)
-            })
-        })
-        .catch((err) => {
-            console.log(`Ошибка в загрузке карточек: ${err}`)
-        })
 }
 
 function getProfileInfo() {
@@ -46,28 +29,22 @@ function getProfileInfo() {
         headers: config.headers
     })
         .then(handleResponse)
-        .catch((err) => {
-            console.log(`Ошибка в загрузке профиля: ${err}`)
-        })
 }
 
-function updateProfileInfo() {
+function updateProfileInfo(nameInput, aboutInput) {
     return fetch(`${config.baseUrl}/users/me`, {
         method: 'PATCH',
         headers: config.headers,
         body: JSON.stringify({
-            name: userData.name,
-            about: userData.about
+            name: nameInput.value,
+            about: aboutInput.value
         })
     })
         .then(handleResponse)
-        .catch((err) => {
-            console.log(`Ошибка в обновлении профиля: ${err}`)
-        })
 }
 
 function downloadNewCard(item) {
-    fetch(`${config.baseUrl}/cards`, {
+    return fetch(`${config.baseUrl}/cards`, {
         method: 'POST',
         headers: config.headers,
         body: JSON.stringify({
@@ -76,24 +53,38 @@ function downloadNewCard(item) {
         })
     })
         .then(handleResponse)
-        .then((res) => {
-            createCard(res);
-            closePopup(popupPlace);
-        })
-        .catch((err) => {
-            console.log(`Ошибка в добавлении карточки: ${err}`)
-        })
 }
 function deleteCard(card) {
-    fetch(`${config.baseUrl}/cards/${card._id}`, {
+    return fetch(`${config.baseUrl}/cards/${card._id}`, {
         method: 'DELETE',
         headers: config.headers,
     })
         .then(handleResponse)
-        .then((res) => {
-            console.log(res)
-        })
-        .catch((err) => {
-            console.log(`Ошибка не удалось удалить карточку. ${err}`)
-        })
+}
+
+function putLikeCard(card) {
+  return fetch(`${config.baseUrl}/cards/likes/${card._id}`, {
+    method: 'PUT',
+    headers: config.headers
+  })
+    .then(handleResponse)
+}
+
+function removeLikeCard(card) {
+  return fetch(`${config.baseUrl}/cards/likes/${card._id}`, {
+    method: 'DELETE',
+    headers: config.headers,
+  })
+    .then(handleResponse)
+}
+
+function updateProfileAvatar(avatarInput) {
+  return fetch(`${config.baseUrl}/users/me/avatar`, {
+    method: 'PATCH',
+    headers: config.headers,
+    body: JSON.stringify({
+      avatar: avatarInput.value
+    })
+  })
+    .then(handleResponse)
 }

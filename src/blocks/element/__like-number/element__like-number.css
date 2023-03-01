@@ -1,0 +1,10 @@
+.element__like-number{
+  display: flex;
+  max-width: 10px;
+  max-height: 13px;
+  color:#000;
+  line-height: 16px;
+  font-weight: 400;
+  font-size: 13px;
+  text-align: center;
+}
