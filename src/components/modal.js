@@ -72,6 +72,7 @@ function handleProfileFormSubmit(evt) {
   updateProfileInfo(nameInput, aboutInput)
     .then((res) => {
       renderProfileInfo(res)
+      closePopup(popupProfile)
 })
     .catch((err) => {
       console.log(`Ошибка в обновлении профиля: ${err}`)
@@ -79,7 +80,6 @@ function handleProfileFormSubmit(evt) {
     .finally(() => {
       renderLoading(false, popupProfile)
 })
-closePopup(popupProfile)
 }
 
 
@@ -89,6 +89,8 @@ function handleProfileAvatarSubmit(evt) {
   updateProfileAvatar(avatarInput)
     .then((res) => {
       renderProfileInfo(res)
+      closePopup(popupAvatar)
+      evt.target.reset();
     })
     .catch((err) => {
       console.log(`Ошибка в изменении аватара: ${err}`)
@@ -96,6 +98,4 @@ function handleProfileAvatarSubmit(evt) {
     .finally(() => {
       renderLoading(false, popupAvatar)
     })
-  closePopup(popupAvatar)
-  evt.target.reset();
 }

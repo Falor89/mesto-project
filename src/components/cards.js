@@ -65,23 +65,15 @@ function createCard(card) {
   }
 
   elementDeleteButton.addEventListener('click', () => {
-    openPopup(popupDeleteConfirm)
-    popupButtonSubmit.addEventListener('click', (evt) => {
-      evt.preventDefault();
-      renderLoading(true, popupDeleteConfirm, 'Удаление...')
-      deleteCard(card)
-        .then(() => {
-          element.remove()
-      })
-        .catch((err) => {
-          console.log(`Ошибка не удалось удалить карточку. ${err}`)
-      })
-        .finally(() => {
-          renderLoading(false, popupDeleteConfirm)
-      })
-    closePopup(popupDeleteConfirm)
+    deleteCard(card)
+      .then(() => {
+        element.remove()
+    })
+      .catch((err) => {
+        console.log(`Ошибка не удалось удалить карточку. ${err}`)
     })
   })
+
 
 // Лайки
   const likes = Array.from(card.likes);
@@ -118,6 +110,8 @@ function handleCardSubmit(evt) {
     downloadNewCard(card)
       .then((res) => {
         renderCards(res)
+        closePopup(popupPlace);
+        evt.target.reset();
   })
       .catch((err) => {
         console.log(`Ошибка в добавлении карточки: ${err}`)
@@ -125,6 +119,38 @@ function handleCardSubmit(evt) {
       .finally(() => {
         renderLoading(false, popupPlace)
   })
-  closePopup(popupPlace);
-  evt.target.reset();
 }
+
+// Попап удаления карточки(реализовать позже)
+/*
+elementDeleteButton.addEventListener('click', () => {
+  openPopup(popupDeleteConfirm)
+  popupButtonSubmit.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    renderLoading(true, popupDeleteConfirm, 'Удаление...')
+    deleteCard(card)
+      .then(() => {
+        element.remove()
+        closePopup(popupDeleteConfirm)
+    })
+      .catch((err) => {
+        console.log(`Ошибка не удалось удалить карточку. ${err}`)
+    })
+      .finally(() => {
+        renderLoading(false, popupDeleteConfirm)
+    })
+  })
+})
+// Рабочая функция удаления
+  elementDeleteButton.addEventListener('click', () => {
+      deleteCard(card)
+        .then(() => {
+          element.remove()
+      })
+        .catch((err) => {
+          console.log(`Ошибка не удалось удалить карточку. ${err}`)
+      })
+    })
+
+
+*/
