@@ -1,10 +1,9 @@
-export { deleteCard, createCard, renderCards, cardsContainer, formCreateCards, handleCardSubmit, popupDescription, cardImage }
 import { openPopup, closePopup, popupPlace, popupImage, popupDeleteConfirm, popupButtonSubmit } from './modal.js'
 import { downloadNewCard, deleteCard, putLikeCard, removeLikeCard } from './api.js';
 import { renderLoading } from './utils.js'
+import { userId } from './profile.js'
 
-
-const formCreateCards = document.querySelector('.form__place');
+const formCreateCards = document.forms.form__place;
 const cardsContainer = document.querySelector('.elements');
 const popupDescription = document.querySelector('.popup__description');
 const cardTemplate = document.querySelector('#element-template').content;
@@ -60,7 +59,7 @@ function createCard(card) {
   });
 
   // Удаление карточки пользователя
-  if (card.owner._id !== '60eb6f9c7195e1a2f6362552') {
+  if (card.owner._id !== userId) {
     elementDeleteButton.remove()
   }
 
@@ -78,7 +77,7 @@ function createCard(card) {
 // Лайки
   const likes = Array.from(card.likes);
   likes.forEach((item) => {
-    if (item._id == '60eb6f9c7195e1a2f6362552') {
+    if (item._id == userId) {
       elementLikeButton.classList.add('element__button-like_active')
     }
   })
@@ -120,6 +119,9 @@ function handleCardSubmit(evt) {
         renderLoading(false, popupPlace)
   })
 }
+
+export { deleteCard, createCard, renderCards, cardsContainer, formCreateCards, handleCardSubmit, popupDescription, cardImage }
+
 
 // Попап удаления карточки(реализовать позже)
 /*

@@ -1,5 +1,4 @@
 
-export { openPopup, closePopup, popupProfile, popupPlace, popupImage, popupAvatar, popupDeleteConfirm, formProfile, formAvatar, nameField, aboutField, openPopupProfile, handleProfileFormSubmit, handleProfileAvatarSubmit, popupButtonSubmit, openAvatar }
 import {  updateProfileAvatar, updateProfileInfo } from './api.js';
 import { renderLoading } from './utils.js';
 import { profileUserName, profileUserAvatar, renderProfileInfo } from './profile.js'
@@ -10,13 +9,13 @@ const popupPlace = document.querySelector('.popup__add-card');
 const popupImage = document.querySelector('.popup__big-image');
 
 const popupAvatar = document.querySelector('.popup__avatar');
-const formAvatar = document.querySelector('.form__avatar');
+const formAvatar = document.forms.form__avatar;
 const avatarInput = formAvatar.querySelector('.avatar-input')
 
 const popupDeleteConfirm = document.querySelector('.popup__delete-confirm')
 const popupButtonSubmit = popupDeleteConfirm.querySelector('.form__button-submit')
 
-const formProfile = document.querySelector('.form__profile');
+const formProfile = document.forms.form__profile;
 const nameInput = formProfile.querySelector('.name-input');
 const aboutInput = formProfile.querySelector('.about-input');
 const nameField = document.querySelector('.profile__title');
@@ -55,15 +54,6 @@ function openPopupProfile() {
 }
 
 
-function openAvatar() {
-  popupDescription.textContent = profileUserName.textContent
-  cardImage.src = profileUserAvatar.src;
-  cardImage.alt = profileUserName.textContent;
-    openPopup(popupImage);
-    closePopup(popupAvatar)
-}
-
-
 //Сохранение изменения попапа
 
 function handleProfileFormSubmit(evt) {
@@ -99,3 +89,6 @@ function handleProfileAvatarSubmit(evt) {
       renderLoading(false, popupAvatar)
     })
 }
+
+
+export { openPopup, closePopup, popupProfile, popupPlace, popupImage, popupAvatar, popupDeleteConfirm, formProfile, formAvatar, nameField, aboutField, openPopupProfile, handleProfileFormSubmit, handleProfileAvatarSubmit, popupButtonSubmit }

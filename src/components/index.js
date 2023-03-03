@@ -1,5 +1,5 @@
 import '../pages/index.css';
-import { openPopup, closePopup, popupPlace, openPopupProfile, formProfile, formAvatar, handleProfileFormSubmit, handleProfileAvatarSubmit, popupAvatar, openAvatar } from './modal.js'
+import { openPopup, closePopup, popupPlace, openPopupProfile, formProfile, formAvatar, handleProfileFormSubmit, handleProfileAvatarSubmit, popupAvatar } from './modal.js'
 import { enableValidation } from "./validate";
 import { getInitialCards, getProfileInfo } from './api.js';
 import { renderCards, formCreateCards, handleCardSubmit } from './cards.js';
@@ -16,8 +16,6 @@ popupProfileButton.addEventListener('click', openPopupProfile);
 popupAddButton.addEventListener('click', () => { openPopup(popupPlace) });
 
 profileUserAvatarButton.addEventListener('click', () => { openPopup(popupAvatar) });
-
-profileUserAvatarButton.addEventListener('dblclick', openAvatar)
 
 formCreateCards.addEventListener('submit', handleCardSubmit)
 
@@ -38,24 +36,16 @@ popups.forEach((popup) => {
   })
 })
 
-
-getProfileInfo()
-.then((res) => {
-  renderProfileInfo(res)
-})
-.catch((err) => {
-  console.log(`Ошибка в загрузке профиля: ${err}`)
-})
-
-getInitialCards()
-.then((res) => {
-  res.forEach((card) => {
+Promise.all([getProfileInfo(), getInitialCards()])
+  .then(([userData, cards]) => {
+    renderProfileInfo(userData);
+    cards.forEach((card) => {
       renderCards(card)
+    })
   })
-})
-.catch((err) => {
-  console.log(`Ошибка в загрузке карточек: ${err}`)
-})
+  .catch((err) => {
+    console.log(`Ошибка в загрузке карточек или профиля пользователя: ${err}`)
+  })
 
 
 const validationSettings = {

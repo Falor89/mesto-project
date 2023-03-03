@@ -1,5 +1,4 @@
 
-export { config, getInitialCards, getProfileInfo, updateProfileInfo, downloadNewCard, deleteCard, putLikeCard, removeLikeCard, updateProfileAvatar }
 const config = {
     baseUrl: 'https://mesto.nomoreparties.co/v1/plus-cohort-21',
     headers: {
@@ -88,3 +87,5 @@ function updateProfileAvatar(avatarInput) {
   })
     .then(handleResponse)
 }
+
+export { config, getInitialCards, getProfileInfo, updateProfileInfo, downloadNewCard, deleteCard, putLikeCard, removeLikeCard, updateProfileAvatar }
